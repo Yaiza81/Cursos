@@ -1,0 +1,23 @@
+#Dependera de que servicios soporte
+version: "3.8"
+
+#componentes que forman la aplicación
+services:
+  app:
+    #build: . #para los cambios en tiempo real
+    image: app
+    environment:
+      MONGO_URL="mongodb://db:27017/test"
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+      #- "3000-3002:3000" #para tener un rango
+
+    #volumes:  #para los cambios en tiempo real
+    #  -.:/usr/src
+    #  -/usr/src/node_modules
+    #command: nodemon index.js
+
+  db:
+    image: mongo
